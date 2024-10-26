@@ -1,4 +1,5 @@
 import 'package:appoftheyear_front_end/widgets/text_input.dart';
+import 'package:appoftheyear_front_end/util/string_util.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatefulWidget {
@@ -10,12 +11,14 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   TextEditingController usernameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController passwordRepeatController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: SingleChildScrollView(
+    return Center(
+      child: SingleChildScrollView(
         padding: const EdgeInsets.all(10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -40,7 +43,7 @@ class _SignUpState extends State<SignUp> {
             ),
             TextInput(
               hint: "Enter email address",
-              controller: usernameController,
+              controller: emailController,
               prefixIcon: const Icon(Icons.email),
             ),
             const SizedBox(
@@ -48,7 +51,7 @@ class _SignUpState extends State<SignUp> {
             ),
             TextInput(
               hint: "Enter password",
-              controller: usernameController,
+              controller: passwordController,
               prefixIcon: const Icon(Icons.password),
               obscureText: true,
             ),
@@ -57,7 +60,7 @@ class _SignUpState extends State<SignUp> {
             ),
             TextInput(
               hint: "Repeat password",
-              controller: usernameController,
+              controller: passwordRepeatController,
               prefixIcon: const Icon(Icons.password),
               obscureText: true,
             ),
@@ -69,10 +72,10 @@ class _SignUpState extends State<SignUp> {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {},
-                    style:  ElevatedButton.styleFrom(
+                    style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
-                      textStyle: const TextStyle(
-                        fontSize: 14,
+                      textStyle: TextStyle(
+                        fontSize: StringUtils.BUTTON_TEXT_SIZE,
                       ),
                     ),
                     child: const Text("Register"),

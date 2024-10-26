@@ -1,4 +1,4 @@
-import 'package:appoftheyear_front_end/pages/sign_up.dart';
+import 'package:appoftheyear_front_end/views/login_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      home: const SignUp(),
+      home: const LoginPage(),
     );
   }
 }

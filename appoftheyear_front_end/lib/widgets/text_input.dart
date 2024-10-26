@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../util/string_util.dart';
+
 class TextInput extends StatelessWidget {
   String? hint;
   bool? obscureText;
@@ -25,17 +27,17 @@ class TextInput extends StatelessWidget {
         fillColor: Colors.white30,
         filled: true,
         hintText: hint,
-        hintStyle: const TextStyle(
+        hintStyle: TextStyle(
             color: Colors.grey,
-            fontSize: 14
+            fontSize: StringUtils.HINT_TEXT_SIZE,
         ),
         prefixIcon: prefixIcon,
         prefixIconColor: Colors.blue,
         suffixIcon: suffixIcon,
         suffixIconColor: Colors.blue,
       ),
-      style: const TextStyle(
-        fontSize: 14,
+      style: TextStyle(
+        fontSize: StringUtils.INPUT_TEXT_SIZE,
       ),
     );
   }
