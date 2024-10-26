@@ -16,4 +16,10 @@ public class User {
 
     @ServerTimestamp
     private Timestamp createdAt;
+
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
 }

@@ -7,6 +7,7 @@ import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QuerySnapshot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import za.co.appoftheyear.appoftheyearserver.dao.UserDao;
 import za.co.appoftheyear.appoftheyearserver.entity.User;
 
 import java.util.List;
@@ -23,7 +24,8 @@ public class UserService {
         this.firestore = firestore;
     }
 
-    public String createUser(User user) throws ExecutionException, InterruptedException {
+    public String createUser(UserDao userDao) throws ExecutionException, InterruptedException {
+        User user = new User(userDao.getUsername(), userDao.getEmail(), userDao.getPassword());
         ApiFuture<DocumentReference> users = firestore.collection(TABLE_NAME).add(user);
         return users.get().getId();
     }
