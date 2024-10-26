@@ -1,6 +1,7 @@
 package za.co.appoftheyear.appoftheyearserver.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import za.co.appoftheyear.appoftheyearserver.dao.UserDao;
@@ -23,7 +24,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<String> createUser(@RequestBody UserDao user) throws ExecutionException, InterruptedException {
-        return ResponseEntity.ok(userService.createUser(user));
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(user));
     }
 
     @GetMapping("{id}")

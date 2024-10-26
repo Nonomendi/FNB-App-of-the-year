@@ -1,6 +1,9 @@
+import 'package:appoftheyear_front_end/controller/api_network.dart';
+import 'package:appoftheyear_front_end/views/dashboard_view.dart';
 import 'package:appoftheyear_front_end/widgets/text_input.dart';
 import 'package:appoftheyear_front_end/util/string_util.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -14,6 +17,9 @@ class _SignUpState extends State<SignUp> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController passwordRepeatController = TextEditingController();
+
+  APIController controller = APIController();
+  String? errorText;
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +77,30 @@ class _SignUpState extends State<SignUp> {
               children: [
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      String username = usernameController.text;
+                      String email = emailController.text;
+                      String pass = passwordController.text;
+
+                      if (passwordRepeatController.text == pass) {
+                        String? result = await controller.registerUser(
+                            username, email, pass);
+                        if (result != null) {
+                          final prefs = await SharedPreferences.getInstance();
+                          prefs.setString("user_id", result);
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const DashboardView()),
+                          );
+                        }
+                      } else {
+                        setState(() {
+                          errorText = "Passwords do not match";
+                        });
+                      }
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
                       textStyle: TextStyle(
@@ -82,7 +111,14 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
               ],
-            )
+            ),
+            Text(
+              errorText ?? "",
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: StringUtils.INPUT_TEXT_SIZE,
+              ),
+            ),
           ],
         ),
       ),

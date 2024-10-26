@@ -1,4 +1,4 @@
-import 'package:appoftheyear_front_end/views/login_page.dart';
+import 'package:appoftheyear_front_end/views/login_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
