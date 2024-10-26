@@ -9,7 +9,6 @@ import za.co.appoftheyear.appoftheyearserver.entity.User;
 import za.co.appoftheyear.appoftheyearserver.service.UserService;
 
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -23,17 +22,27 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createUser(@RequestBody UserDao user) throws ExecutionException, InterruptedException {
+    public ResponseEntity<User> createUser(@RequestBody UserDao user) {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(user));
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<User> getUser(@PathVariable String id) throws ExecutionException, InterruptedException {
+    public ResponseEntity<User> getUser(@PathVariable String id) {
         return ResponseEntity.ok(userService.getUser(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> getUsers() throws ExecutionException, InterruptedException {
-        return ResponseEntity.ok(userService.getUsers());
+    public ResponseEntity<List<User>> getUsers() {
+        return ResponseEntity.ok(userService.getAllUsers());
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<User> updateUser(@PathVariable String id, @RequestBody UserDao user) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.updateUser(id, user));
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteUser(@PathVariable String id) {
+        userService.deleteUser(id);
     }
 }
