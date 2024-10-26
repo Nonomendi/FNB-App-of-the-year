@@ -1,131 +1,111 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillUp - Skills Development</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
+        #app {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            width: 350px;
+            position: relative;
+            overflow: hidden;
+        }
 
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
 
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <base href="$FLUTTER_BASE_HREF">
+        p {
+            margin: 15px 0;
+            font-size: 1.1em;
+        }
 
-  <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin: 5px;
+        }
 
-  <!-- iOS meta tags & icons -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="appoftheyear_front_end">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+        button:hover {
+            background-color: #ff4c3b;
+            transform: scale(1.05);
+        }
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+        .service-container {
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            max-width: 800px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            display: none; /* Hide service container initially */
+        }
 
-  <title>appoftheyear_front_end</title>
-  <link rel="manifest" href="manifest.json">
+        .service {
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-  <script src="flutter_bootstrap.js" async></script>
-</body>
-</html>
+    <div id="app">
+        <div id="welcome-page">
+            <h1>Welcome to SkillUp!</h1>
+            <p>Your platform for skill development and career advancement.</p>
+            <button id="view-services-btn">Explore Our Services</button>
+        </div>
 
-  <meta name="description" content="Platform offering skills training, mentorship, and career guidance to address unemployment.">
+        <div class="service-container" id="services-page">
+            <h1>Our Services</h1>
+            <div class="service"><strong>Tutorials</strong></div>
+            <div class="service"><strong>Video Courses</strong></div>
+            <div class="service"><strong>Sign Ups</strong></div>
+            <div class="service"><strong>Reviews</strong></div>
+            <div class="service"><strong>Peer-to-Peer Learning</strong></div>
+            <div class="service"><strong>Mentorship Platform</strong></div>
+            <div class="service"><strong>Resume Building</strong></div>
+            <div class="service"><strong>Interview Preparations</strong></div>
+            <div class="service"><strong>Personalized Assessments</strong></div>
+            <button id="back-home-btn">Back to Home</button>
+        </div>
+    </div>
 
-  <title>Skills Development Platform</title>
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <!-- Header Section -->
-  <header>
-      <h1>Skills Development Platform</h1>
-      <p>Empowering Careers through Skills, Mentorship, and Job Opportunities</p>
-  </header>
+    <script>
+        document.getElementById('view-services-btn').addEventListener('click', function() {
+            document.getElementById('welcome-page').style.display = 'none';
+            document.getElementById('services-page').style.display = 'block';
+        });
 
-  <!-- Main Introduction Section -->
-  <section id="introduction">
-      <h2>Welcome to Your Career Advancement Platform</h2>
-      <p>Our platform offers comprehensive support to individuals seeking career growth, with resources covering technical skills, soft skills, and job preparation. We connect learners with job opportunities and industry experts for a well-rounded career-building experience.</p>
-  </section>
-
-  <!-- Video Courses & Certifications Section -->
-  <section id="courses">
-      <h2>In-Demand Skills Courses</h2>
-      <p>Learn high-demand skills like coding, data science, and digital marketing through video courses, tutorials, and certifications designed by industry experts.</p>
-      <div class="course">
-          <h3>Technical Skills Training</h3>
-          <ul>
-              <li>Coding and Programming</li>
-              <li>Data Science & Analytics</li>
-              <li>Digital Marketing</li>
-          </ul>
-      </div>
-      <div class="course">
-          <h3>Certification Programs</h3>
-          <p>Get certified in the latest tech and business skills to enhance your resume and job prospects.</p>
-      </div>
-  </section>
-
-  <!-- Soft Skills Training Section -->
-  <section id="soft-skills">
-      <h2>Soft Skills Development</h2>
-      <p>Build essential skills that boost employability, such as resume writing, interview preparation, and effective communication.</p>
-      <div class="soft-skill">
-          <h3>Resume Building</h3>
-          <p>Craft a professional resume with tips and templates from career experts.</p>
-      </div>
-      <div class="soft-skill">
-          <h3>Interview Preparation</h3>
-          <p>Get guidance on answering common questions, building confidence, and presenting yourself effectively.</p>
-      </div>
-      <div class="soft-skill">
-          <h3>Communication Skills</h3>
-          <p>Learn the art of clear, persuasive communication to thrive in any workplace.</p>
-      </div>
-  </section>
-
-  <!-- Job Openings and Career Matching Section -->
-  <section id="jobs">
-      <h2>Job Opportunities</h2>
-      <p>Connect with real-time job openings suited to your skills and aspirations. Our platform matches your profile with open positions from top companies.</p>
-      <button onclick="window.location.href='jobs.html'">Explore Job Listings</button>
-  </section>
-
-  <!-- Mentorship and Career Guidance Section -->
-  <section id="mentorship">
-      <h2>Mentorship & Career Guidance</h2>
-      <p>Our mentorship program pairs you with industry experts for guidance, advice, and goal setting to achieve career success.</p>
-      <div class="mentor">
-          <h3>One-on-One Mentorship</h3>
-          <p>Get personalized career advice from professionals in your field.</p>
-      </div>
-      <div class="mentor">
-          <h3>Goal Setting & Career Planning</h3>
-          <p>Set career goals with structured guidance and track your progress toward achieving them.</p>
-      </div>
-  </section>
-
-  <!-- Personalized Career Assessment Section -->
-  <section id="assessment">
-      <h2>Personalized Career Assessments</h2>
-      <p>Identify your strengths, areas for growth, and career preferences through our assessment tools. Receive customized recommendations based on your results.</p>
-      <button onclick="window.location.href='assessment.html'">Take Career Assessment</button>
-  </section>
-
-  <!-- Footer Section -->
-  <footer>
-      <p>&copy; 2024 Skills Development Platform. All rights reserved.</p>
-      <p><a href="mailto:support@skillsplatform.org">Contact Us</a> | <a href="privacy-policy.html">Privacy Policy</a></p>
-  </footer>
-
-  <script src="flutter_bootstrap.js" async></script>
+        document.getElementById('back-home-btn').addEventListener('click', function() {
+            document.getElementById('services-page').style.display = 'none';
+            document.getElementById('welcome-page').style.display = 'block';
+        });
+    </script>
 </body>
 </html>
