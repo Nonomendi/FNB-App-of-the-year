@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillUp - Personalized Assessments</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 20px 0;
+        }
+
+        .assessment-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            text-align: left;
+        }
+
+        h2 {
+            margin: 15px 0;
+        }
+
+        .question {
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff4c3b;
+        }
+
+        #timer {
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+
+        #certificate {
+            display: none;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Personalized Assessments</h1>
+    <div class="assessment-container">
+        <div id="timer">Time Remaining: <span id="time">60:00</span></div>
+        
+        <h2>Coding Assessment</h2>
+        <div class="question">
+            <strong>1. What does the following code output?</strong><br>
+            <code>console.log(typeof null);</code><br>
+            <input type="text" id="codingAnswer" placeholder="Your answer here">
+        </div>
+
+        <h2>Data Science Assessment</h2>
+        <div class="question">
+            <strong>2. What is the purpose of the Pandas library in Python?</strong><br>
+            <input type="text" id="dataScienceAnswer" placeholder="Your answer here">
+        </div>
+
+        <h2>Digital Marketing Assessment</h2>
+        <div class="question">
+            <strong>3. What does SEO stand for?</strong><br>
+            <input type="text" id="digitalMarketingAnswer" placeholder="Your answer here">
+        </div>
+        
+        <button id="submitAssessment">Submit Assessment</button>
+
+        <div id="certificate">
+            <h2>Congratulations!</h2>
+            <p>You have completed the assessment. You can now claim your certificate for participation.</p>
+            <button onclick="claimCertificate()">Claim Certificate</button>
+        </div>
+    </div>
+
+    <script>
+        let timeLeft = 3600; // 60 minutes in seconds
+        const timerElement = document.getElementById('time');
+        const submitButton = document.getElementById('submitAssessment');
+        const certificateElement = document.getElementById('certificate');
+
+        const countdown = setInterval(() => {
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                submitButton.disabled = true; // Disable the submit button when time is up
+                alert("Time's up! Please submit your assessment.");
+            } else {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                timeLeft--;
+            }
+        }, 1000);
+
+        document.getElementById('submitAssessment').addEventListener('click', function() {
+            const codingAnswer = document.getElementById('codingAnswer').value.toLowerCase();
+            const dataScienceAnswer = document.getElementById('dataScienceAnswer').value.toLowerCase();
+            const digitalMarketingAnswer = document.getElementById('digitalMarketingAnswer').value.toLowerCase();
+
+            // Check answers (you can adjust the correct answers as needed)
+            const correctAnswers = {
+                coding: "object",
+                dataScience: "data manipulation and analysis, providing data structures like dataframes",
+                digitalMarketing: "search engine optimization"
+            };
+
+            let score = 0;
+
+            if (codingAnswer === correctAnswers.coding) score++;
+            if (dataScienceAnswer.includes("data manipulation")) score++;
+            if (digitalMarketingAnswer === correctAnswers.digitalMarketing) score++;
+
+            alert(`You scored ${score}/3. Thank you for taking the assessment!`);
+            certificateElement.style.display = 'block';
+        });
+
+        function claimCertificate() {
+            alert("Your certificate has been claimed! Check your profile for details.");
+        }
+    </script>
+</body>
+</html>

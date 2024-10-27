@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillUp - Resume Builder</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 20px 0;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            text-align: left;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        button {
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #ff4c3b;
+        }
+
+        .resume {
+            display: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: left;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .resume h2 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Resume Builder</h1>
+    <div class="form-container">
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="text" id="email" placeholder="Email" required>
+        <input type="text" id="phone" placeholder="Phone Number" required>
+        <input type="text" id="address" placeholder="Address" required>
+        <input type="text" id="education" placeholder="Education" required>
+        <textarea id="experience" placeholder="Work Experience (e.g., Job Title, Company, Duration, Responsibilities)" rows="4" required></textarea>
+        <textarea id="skills" placeholder="Skills (e.g., Skill 1, Skill 2, Skill 3)" rows="4" required></textarea>
+        <button id="build-resume-btn">Build My Resume</button>
+    </div>
+
+    <div class="resume" id="resume">
+        <h2>Your Resume</h2>
+        <p><strong>Name:</strong> <span id="resume-name"></span></p>
+        <p><strong>Email:</strong> <span id="resume-email"></span></p>
+        <p><strong>Phone:</strong> <span id="resume-phone"></span></p>
+        <p><strong>Address:</strong> <span id="resume-address"></span></p>
+        <p><strong>Education:</strong> <span id="resume-education"></span></p>
+        <p><strong>Work Experience:</strong> <span id="resume-experience"></span></p>
+        <p><strong>Skills:</strong> <span id="resume-skills"></span></p>
+    </div>
+
+    <script>
+        document.getElementById('build-resume-btn').addEventListener('click', function() {
+            // Get input values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const education = document.getElementById('education').value;
+            const experience = document.getElementById('experience').value;
+            const skills = document.getElementById('skills').value;
+
+            // Set resume content
+            document.getElementById('resume-name').textContent = name;
+            document.getElementById('resume-email').textContent = email;
+            document.getElementById('resume-phone').textContent = phone;
+            document.getElementById('resume-address').textContent = address;
+            document.getElementById('resume-education').textContent = education;
+            document.getElementById('resume-experience').textContent = experience;
+            document.getElementById('resume-skills').textContent = skills;
+
+            // Display the resume
+            document.getElementById('resume').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

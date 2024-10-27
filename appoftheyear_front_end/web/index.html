@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SkillUp - Skills Development</title>
     <style>
+        /* General Styling */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -55,6 +56,25 @@
             transform: scale(1.05);
         }
 
+        /* Form Styles */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            padding: 10px;
+            font-size: 1em;
+            margin: 10px 0;
+            width: 100%;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+
         .service-container {
             margin: 20px auto;
             padding: 20px;
@@ -62,7 +82,7 @@
             border-radius: 10px;
             max-width: 800px;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-            display: none; /* Hide service container initially */
+            display: none;
         }
 
         .service {
@@ -71,37 +91,101 @@
             background: rgba(255, 255, 255, 0.2);
             border-radius: 5px;
         }
+
+        .service a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            height: 100%;
+        }
+
+        .service a:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
     </style>
 </head>
 <body>
     <div id="app">
+        <!-- Welcome Page -->
         <div id="welcome-page">
             <h1>Welcome to SkillUp!</h1>
             <p>Your platform for skill development and career advancement.</p>
-            <button id="view-services-btn">Explore Our Services</button>
+            <button id="view-services-btn">Welcome</button>
         </div>
 
-        <div class="service-container" id="services-page">
+        <!-- Register Page -->
+        <div class="service-container" id="register-page">
+            <h1>Register</h1>
+            <form id="registration-form">
+                <input type="text" name="name" placeholder="Full Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Submit</button>
+            </form>
+            <p>Already have an account? <a href="#" id="login-link">Login here</a></p>
+        </div>
+
+        <!-- Login Page -->
+        <div class="service-container" id="login-page" style="display: none;">
+            <h1>Login</h1>
+            <form id="login-form">
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <button id="services-btn">Our Services</button>
+        </div>
+
+        <!-- Services Page -->
+        <div class="service-container" id="services-page" style="display: none;">
             <h1>Our Services</h1>
-            <div class="service"><strong>Tutorials</strong></div>
-            <div class="service"><strong>Video Courses</strong></div>
-            <div class="service"><strong>Sign Ups</strong></div>
-            <div class="service"><strong>Reviews</strong></div>
-            <div class="service"><strong>Peer-to-Peer Learning</strong></div>
-            <div class="service"><strong>Mentorship Platform</strong></div>
-            <div class="service"><strong>Resume Building</strong></div>
-            <div class="service"><strong>Interview Preparations</strong></div>
-            <div class="service"><strong>Personalized Assessments</strong></div>
+            <div class="service"><a href="tutorials.html" target="_blank"><strong>Tutorials</strong></a></div>
+            <div class="service"><a href="course-videos.html" target="_blank"><strong>Video Courses</strong></a></div>
+            <div class="service"><a href="reviews.html" target="_blank"><strong>Reviews</strong></a></div>
+            <div class="service"><a href="peer-learning.html" target="_blank"><strong>Peer-to-Peer Learning</strong></a></div>
+            <div class="service"><a href="mentorship.html" target="_blank"><strong>Mentorship Platform</strong></a></div>
+            <div class="service"><a href="resume-building.html" target="_blank"><strong>Resume Building</strong></a></div>
+            <div class="service"><a href="interview-prep.html" target="_blank"><strong>Interview Preparations</strong></a></div>
+            <div class="service"><a href="personalized-assessments.html" target="_blank"><strong>Personalized Assessments</strong></a></div>
             <button id="back-home-btn">Back to Home</button>
         </div>
     </div>
 
     <script>
+        // Welcome button to show the registration page
         document.getElementById('view-services-btn').addEventListener('click', function() {
             document.getElementById('welcome-page').style.display = 'none';
+            document.getElementById('register-page').style.display = 'block';
+        });
+
+        // "Login here" link to open the login page from the registration page
+        document.getElementById('login-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('register-page').style.display = 'none';
+            document.getElementById('login-page').style.display = 'block';
+        });
+
+        // Registration form submission to show services page
+        document.getElementById('registration-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('register-page').style.display = 'none';
             document.getElementById('services-page').style.display = 'block';
         });
 
+        // Login form submission to show services page
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('login-page').style.display = 'none';
+            document.getElementById('services-page').style.display = 'block';
+        });
+
+        // "Our Services" button on the login page to show services page
+        document.getElementById('services-btn').addEventListener('click', function() {
+            document.getElementById('login-page').style.display = 'none';
+            document.getElementById('services-page').style.display = 'block';
+        });
+
+        // Back to Home button to return to the welcome page
         document.getElementById('back-home-btn').addEventListener('click', function() {
             document.getElementById('services-page').style.display = 'none';
             document.getElementById('welcome-page').style.display = 'block';
