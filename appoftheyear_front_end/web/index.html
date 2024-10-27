@@ -119,7 +119,7 @@
             <form id="registration-form">
                 <input type="text" name="name" placeholder="Full Name" required>
                 <input type="email" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="password" placeholder="Password" required maxlength="10" pattern="^[0-9]{1,10}$" title="Password must be a numeric value with a maximum of 10 digits.">
                 <button type="submit">Submit</button>
             </form>
             <p>Already have an account? <a href="#" id="login-link">Login here</a></p>
@@ -152,40 +152,43 @@
     </div>
 
     <script>
-        // Welcome button to show the registration page
+        const registeredEmails = ["user@example.com"]; // Simulating registered emails
+
         document.getElementById('view-services-btn').addEventListener('click', function() {
             document.getElementById('welcome-page').style.display = 'none';
             document.getElementById('register-page').style.display = 'block';
         });
 
-        // "Login here" link to open the login page from the registration page
         document.getElementById('login-link').addEventListener('click', function(event) {
             event.preventDefault();
             document.getElementById('register-page').style.display = 'none';
             document.getElementById('login-page').style.display = 'block';
         });
 
-        // Registration form submission to show services page
         document.getElementById('registration-form').addEventListener('submit', function(event) {
             event.preventDefault();
-            document.getElementById('register-page').style.display = 'none';
-            document.getElementById('services-page').style.display = 'block';
+            const email = event.target.email.value;
+            
+            if (registeredEmails.includes(email)) {
+                alert("This account already exists");
+            } else {
+                registeredEmails.push(email);
+                document.getElementById('register-page').style.display = 'none';
+                document.getElementById('services-page').style.display = 'block';
+            }
         });
 
-        // Login form submission to show services page
         document.getElementById('login-form').addEventListener('submit', function(event) {
             event.preventDefault();
             document.getElementById('login-page').style.display = 'none';
             document.getElementById('services-page').style.display = 'block';
         });
 
-        // "Our Services" button on the login page to show services page
         document.getElementById('services-btn').addEventListener('click', function() {
             document.getElementById('login-page').style.display = 'none';
             document.getElementById('services-page').style.display = 'block';
         });
 
-        // Back to Home button to return to the welcome page
         document.getElementById('back-home-btn').addEventListener('click', function() {
             document.getElementById('services-page').style.display = 'none';
             document.getElementById('welcome-page').style.display = 'block';
