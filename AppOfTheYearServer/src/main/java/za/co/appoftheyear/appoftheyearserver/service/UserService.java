@@ -30,7 +30,7 @@ public class UserService {
     }
 
     public User createUser(UserDao userDao) {
-        User user = new User(userDao.getUsername(), userDao.getEmail(), userDao.getPassword());
+        User user = new User(userDao.getUsername(), userDao.getEmail(), userDao.getPassword(), userDao.getTargetPosition(), userDao.getProficiency());
         return repo.save(user);
     }
 
